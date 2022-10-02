@@ -1,0 +1,18 @@
+TASK 1 - 
+
+SELECT product,SUM(CONCAT(quantity*unit_price)) AS total_price FROM shopping_history GROUP BY product ORDER BY product DESC;
+
+TASK 2 -
+
+select name from phones JOIN (select caller,CONCAT(caller_sum + callee_sum) as total_duration from (SELECT caller,sum(duration) as caller_sum from calls group by caller) as table1 LEFT OUTER JOIN (SELECT callee,sum(duration) as callee_sum from calls group by callee) as table2 ON table2.callee = table1.caller) as table3 ON table3.caller = phones.phone_number WHERE table3.total_duration>=10 ORDER BY name ASC;
+
+TASK 3 - 
+
+with details as(select (to_char(Date,'MMMM')) as Mon_Count from transactions where Amount<0 group by Mon_count
+Having Sum(Amount)<=-100 and COUNT(amount)>=3)
+select sum(t.amount) - (12 [ COUNT(distinct(d.Mon_Count)))*5 as Deduction_Amt from transactions1 t,Details d;
+
+
+
+
+
